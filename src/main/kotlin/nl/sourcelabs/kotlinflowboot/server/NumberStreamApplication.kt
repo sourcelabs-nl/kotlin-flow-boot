@@ -19,6 +19,14 @@ class NumberStreamApplication {
             emit((0..100).random())
         }
     }
+
+    @GetMapping("/count-down", produces = [MediaType.APPLICATION_NDJSON_VALUE])
+    suspend fun countDown() = flow {
+        for(i in 10 downTo 0) {
+            delay(1000)
+            emit(i)
+        }
+    }
 }
 
 fun main(args: Array<String>) {
